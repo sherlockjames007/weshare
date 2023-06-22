@@ -1,0 +1,31 @@
+
+<div class="large-navbar">
+    <div class="left-region">
+        <a href="/" class="logo">LOGO</a>
+        <form method="GET" action="/search/">
+            <input type="text" class="search-bar" placeholder="search keyword" name="search_query">
+            <input type="submit" class="navbar-button-11" value="Search">
+        </form>        
+    </div>
+
+    <div class="middle-region">
+        <a href="/create-post/">
+            <button class="navbar-button-11">Create post</button>
+        </a>
+        <a href="/show-chats/">
+            <button class="navbar-button-11">Chats</button>
+        </a>
+        <a href="/settings/">
+            <button class="navbar-button-11">Settings</button>
+        </a>
+    </div>
+
+    <div class="right-region">
+        <a href="/show-profile/{{request.user.id}}">
+            <button class="navbar-button-11">My profile</button>
+        </a>
+        <a href="/logout/">
+            <button class="navbar-button-11">Logout</button>
+        </a>
+    </div>
+</div>

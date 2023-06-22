@@ -1,0 +1,229 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    width: 98vw;    
+    column-gap: 1vw;
+    margin-top: 5vh;
+    /* position: relative; */
+}
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    align-items: center;
+    justify-content: start;
+    background-color: rgb(65, 64, 64);
+    padding: 1vw;
+    row-gap: 1vh;
+}
+
+.feed-left {
+    /* position: fixed; */
+    top: 10vh;
+    left: 0.6vw;
+    right: 71.5%;
+    bottom: 0.6vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(65, 64, 64);
+    padding: 1vw;
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    row-gap: 1vh;
+}
+
+.feed-right {
+    /* position: fixed; */
+    top: 10vh;
+    left: 71.5%;
+    right: 0.6vw;
+    bottom: 0.6vw;
+    display: flex;
+    min-height: 80vh;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(65, 64, 64);
+    flex: 1;
+    padding: 1vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    row-gap: 1vh;
+}
+
+/* .feed-left::-webkit-scrollbar, .feed-right::-webkit-scrollbar{
+    visibility: hidden;
+} */
+
+
+.button-11 {
+    background-color: rgb(58, 58, 201);
+    font-weight: bold;
+    padding: 1ch;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5ch;
+}
+
+
+.div-11 {
+    border: solid;
+    display: flex;
+    width: 94%;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.div-12 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    background-color: lightgray;
+    padding: 1ch;
+    border-radius: 0.5ch;
+}
+
+.div-13 {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2vw;
+    width: 90%;
+    margin-top: 3vh;
+    margin-bottom: 0;
+}
+
+.div-14 {
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    row-gap: 2vh;
+    background-color: lightgray;
+    padding: 1ch;
+    border-radius: 1ch;
+    position: relative;
+}
+
+.div-15 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+}
+
+.div-16 {
+    display: flex;
+    flex-direction: row;
+    width: 98%;    
+    align-items: center;
+    justify-content: space-between;
+}
+
+.div-17 {
+    border-radius: 47%;
+    background-color: darkblue;
+    padding: 2%;
+    color: white;
+    font-weight: bold;
+}
+
+.div-18 {
+    background-color: darkgreen;
+    border-radius: 40%;
+    padding: 2%;
+}
+
+.img-11 {
+    border: solid;
+    border-color: black;
+    height: 3ch;
+    width: 3ch;
+    border-radius: 2vw;
+    object-fit: initial;
+}
+
+.img-12 {
+    object-fit: contain;
+    height: 50vh;
+    width: 90%;
+}
+
+.input-text-11 {
+    border-radius: 1ch;
+    border: none;
+    padding: 1ch;
+}
+
+.input-image-11 {    
+    height: 3ch;
+    width: 3ch;
+    margin-left: 10vw;
+    background-color: white;
+    border-radius: 0.5ch;
+    transition: border 0.1s;    
+}
+
+.input-image-11:active {    
+    border: solid;
+    border-color: black;
+    border-width: 0.2ch;
+}
+
+
+.p-11 {
+    /* margin-top: 2vh; */
+    font-weight: bold;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* display: inline-block; */
+}
+
+.span-11 {
+    color: black;
+    margin-top: 3vh;
+    /* margin-bottom: 3vh; */
+    width: 90%;
+    padding: 0.5vw;
+    background-color: lightgrey;
+    border-radius: 1ch;
+    overflow-wrap: break-word;
+}
+
+.span-12 {
+    color: rgb(68, 169, 228);
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.span-13 {
+    color: rgb(22, 90, 129);
+    font-weight: bold;
+    /* width: 35%; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.span-14 {
+    color: black;
+    max-width: 60%;
+    padding: 0.5vw;
+    background-color: lightgrey;
+    border-radius: 1ch;
+    overflow-wrap: break-word;    
+}
+
+.feed-left .span-13, .feed-right .span-13 {
+    color: rgb(22, 79, 112)
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% load static %}
+{% load tz %}
+<html>
+    <head>
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'class_styles.css' %}">
+        <link rel="stylesheet" href="{% static 'general_styles.css' %}">
+        <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    </head>
+    <body>
+        {% include "navbar.html" %}              
+            <div class="content">    
+                <div class="feed-left">
+                    <span class="span-12">User info</span>                    
+                    {% if request.user.profile.profilePic.content is None %}
+                        <img src="{% static 'profile_pic_unavailable.jpg' %}" class="img-12">
+                    {% else %}
+                        <img src="{{request.user.profile.profilePic.content.url}}" class="img-12">
+                    {% endif %}           
+                    <div class="div-14">
+                        <span class="span-13">Handle: @{{request.user}}</span>
+                        <strong>Name: {{request.user.first_name}} {{request.user.last_name}}</strong>
+                        <span class="span-13">{{request.user.profile.bio}}</span>
+                    </div>                                
+                </div>
+                
+                
+
+
+                {% if not posts %}
+                    <div class="feed">
+                        <h2>Nothing to show</h2>
+                    </div>
+                {% else %}
+                <div class="feed">
+                    <span class="span-12">Posts</span>
+                    {% for post in posts %}
+                    <div class="div-11">
+                        <div class="div-12">
+                            {% if not post.created_by.profilePic %}
+                                <img src="{% static 'profile_pic_unavailable.jpg' %}" class="img-11">
+                            {% else %}
+                                <img src="{{post.created_by.profilePic.content.url}}" class="img-11">
+                            {% endif %}
+                            <a href="/show-profile/{{post.created_by.user.id}}">
+                                <span class="span-13">{{post.created_by.user.first_name}} {{post.created_by.user.last_name}}</span>
+                            </a>                            
+                            <span class="span-13">{{post.upload_time|timezone:"Asia/Kolkata"}}</span>
+                        </div>
+                        <span class="span-11">{{post.caption}}</span>
+                        <img src="{{post.photo.content.url}}" class="img-12">
+                    </div>
+                    {% endfor %}
+                </div>                
+                {% endif %}
+
+
+
+                <div class="feed-right">
+                    <span class="span-12">Following</span>
+                    {% for follow in following %}
+                        <div class="div-14">
+                            <div class="div-15">
+                                {% if follow.profilePic.content is None %}
+                                    <img src="{% static 'profile_pic_unavailable.jpg' %}" class="img-11">
+                                {% else %}
+                                    <img src="{{follow.profilePic.content.url}}" class="img-11">
+                                {% endif %} 
+                                <span class="span-13">{{follow.user.first_name}} {{follow.user.last_name}}</span>
+                                <a href="/show-profile/{{follow.user.id}}/">
+                                    <span class="span-13">@{{follow.user.username}}</span>
+                                </a>
+                            </div>
+                            <form action="/unfollow/{{follow.user.id}}/" method="POST">
+                                {% csrf_token %}
+                                <input class="button-11" type="submit" value="Unfollow">
+                            </form>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>        
+    </body>
+</html>

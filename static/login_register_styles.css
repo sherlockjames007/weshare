@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+span {
+    overflow-wrap: break-word;
+}
+
+.content {
+    display: flex;
+    width: 98vw;
+    align-items: center;
+    flex-direction: column;
+}
+
+.div-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    row-gap: 2vh;
+}
+
+.div-2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    column-gap: 1vw;
+    margin-bottom: 5vh;
+}
+
+.div-3 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 2vh;
+    width: 100%;
+    margin-bottom: 0vh;
+}
+
+.div-4 {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+    width: 100%;
+    align-items: center;
+}
+
+.div-5 {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid;
+    border-radius: 0.5ch;
+    border-width: 0.5ch;
+    padding: 1ch;
+}
+
+.div-6 {
+    display: flex;
+    column-gap: 2vw;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.button-3 {
+    background-color: blue;
+    font-weight: bold;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 1ch;
+    border-radius: 0.7ch;
+    margin-left: 5vw;
+}
+
+.input-1 {
+    height: 5vh;
+    padding: 1ch;
+    width: 50%;
+}
+
+.input-2 {
+    height: 14vh;
+    width: 100%;
+    padding: 1ch;
+}
+
+.button-1 {
+    background-color: lightblue;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    height: 7vh;
+    border-radius: 1ch;
+    font-size: 1.7ch;
+    width: 50%;
+}
+
+.button-1:active, .button-2:active {
+    color: blue;
+}
+
+.button-2 {
+    background-color: lightblue;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    height: 5ch;
+    border-radius: 1ch;
+    padding: 1.5ch;
+    font-size: 1.7ch;
+}
+
+.navbar {
+    display: flex;
+    width: 98vw;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5vh;
+    background-color: darkgray;
+    padding: 1ch;
+    border-radius: 1ch;
+}
+
+.span-1 {
+    font-weight: bold;
+    font-size: 2.3ch;
+    color: darkblue;
+}
+
+.span-2 {
+    font-weight: bold;
+    color: darkblue;
+    font-size: 2.1ch;
+}
+
+.span-3 {
+    font-weight: bolder;
+    font-size: 2.5ch;
+}
+
+.span-4 {
+    margin-top: 2vh;
+    display: block;
+    width: 80%;
+    font-weight: bold;
+    background-color: darkgray;
+    padding: 1ch;
+    border-radius: 1ch;
+}

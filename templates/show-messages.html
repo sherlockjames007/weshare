@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'class_styles.css' %}">
+        <link rel="stylesheet" href="{% static 'general_styles.css' %}">
+        <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    </head>
+    <script>
+        async function send_message(pk){
+            let cookie = document.cookie.split(';');    
+            let csrftoken = cookie[0].split('=')[1];
+            let url = '/send-message/';
+            let text = document.getElementById('text');
+    
+            console.log(pk);
+    
+            let response = await fetch(url, {  
+                method: 'POST',
+                body: JSON.stringify({
+                    'pk': pk,
+                    'text': text.value,
+                }),
+                headers: {
+                    'Content-Type': 'application/json;',
+                    'X-CSRFToken': csrftoken
+                }
+            })     
+            
+            if (!response.ok){
+                return;
+            }            
+            let div = document.createElement('div');
+            div.style.display = 'flex';
+            div.style.width = '90%';
+            div.style.justifyContent = 'flex-start';
+            div.style.margin = 0;
+
+            let span = document.createElement('span');
+            span.className = 'span-14';
+            span.innerText = await response.json();
+
+            div.appendChild(span);
+            
+            let snd_msg_div = document.getElementById('send-message-div');
+            snd_msg_div.after(div); 
+            text.value = "";
+        }
+    </script>
+
+
+
+    <body>
+        {% include "navbar.html" %}
+        <div class="content">    
+            <div class="feed-left">
+                <span class="span-12">User info</span>                    
+                {% if request.user.profile.profilePic.content is None %}
+                    <img src="{% static 'profile_pic_unavailable.jpg' %}" class="img-12">
+                {% else %}
+                    <img src="{{request.user.profile.profilePic.content.url}}" class="img-12">
+                {% endif %}           
+                <div class="div-14">
+                    <span class="span-13">Handle: @{{request.user}}</span>
+                    <strong>Name: {{request.user.first_name}} {{request.user.last_name}}</strong>
+                    <span class="span-13">{{request.user.profile.bio}}</span>
+                </div>                                
+            </div>
+
+
+
+            <div class="feed">
+                <span class="span-12">Messages</span>
+                <div class="div-13" id="send-message-div">
+                    <input type="text" placeholder="Write message" required name="text" id="text" class="input-text-11">
+                    <input type="submit" value="Send" onclick="send_message('{{pk}}')">
+                </div>
+                {% for message in messages %}
+                    {% if message.by == request.user.profile %}
+                    <div style="display: flex; width: 90%; justify-content: flex-start; margin: 0;">
+                        <span class="span-14">{{message.body}}</span>
+                    </div>
+                    {% else %}
+                    <div style="display: flex; width: 90%; justify-content: flex-end;">
+                        <span class="span-14">{{message.body}}</span>
+                    </div>
+                    {% endif %}
+                {% endfor %}                                
+            </div>    
+
+
+
+            <div class="feed-right">
+                <span class="span-12">Following</span>
+                {% for follow in following %}
+                    <div class="div-14">
+                        <div class="div-15">
+                            {% if follow.profilePic.content is None %}
+                                <img src="{% static 'profile_pic_unavailable.jpg' %}" class="img-11">
+                            {% else %}
+                                <img src="{{follow.profilePic.content.url}}" class="img-11">
+                            {% endif %} 
+                            <span class="span-13">{{follow.user.first_name}} {{follow.user.last_name}}</span>
+                            <a href="/show-profile/{{follow.user.id}}/">
+                                <span class="span-13">@{{follow.user.username}}</span>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>
+
+<div>
+    
+</div>
+
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+{% load tz %}
+<html>
+    <head>
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'class_styles.css' %}">
+        <link rel="stylesheet" href="{% static 'general_styles.css' %}">
+        <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <div class="content">
+            <div class="feed">
+                <span class="span-12">SEARCH RESULT</span>
+                {% for profile in res %}
+                    <div class="div-14">
+                        <div class="div-15">
+                            {% if profile.profilePic.content is None %}
+                                <img src="{% static 'profile_pic_unavailable.jpg' %}" class="img-11">
+                            {% else %}
+                                <img src="{{profile.profilePic.content.url}}" class="img-11">
+                            {% endif %}
+                            <span class="span-13">{{profile.user.first_name}} {{profile.user.last_name}}</span>
+                            <a href="/show-profile/{{profile.user.id}}/">
+                                <span class="span-13">@{{profile.user.username}}</span>
+                            </a>
+                        </div>
+                        {% if profile == request.user.profile%}
+                            <strong>YOU</strong>
+                        {% elif profile in following %}
+                            <form action="/unfollow/{{profile.user.id}}/" method="POST">
+                                {% csrf_token %}
+                                <input class="button-11" type="submit" value="Unfollow">
+                            </form>
+                        {% else %}
+                            <form action="/follow/{{profile.user.id}}/" method="POST">
+                                {% csrf_token %}
+                                <input class="button-11" type="submit" value="Follow">
+                            </form>
+                        {% endif %}              
+                    </div>
+                {% endfor %}
+            </div>
+        </div>        
+    </body>
+</html>

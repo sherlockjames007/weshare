@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+{% load tz %}
+<html>
+    <head>
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'class_styles.css' %}">
+        <link rel="stylesheet" href="{% static 'general_styles.css' %}">
+        <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    </head>
+    <body>
+        {% include "navbar.html" %}        
+        <div class="content">
+            <div class="feed-left">
+                <span class="span-12">User info</span>
+                {% if profile.profilePic.content is None %}
+                    <img src="{% static 'profile_pic_unavailable.jpg' %}" class="img-12">
+                {% else %}
+                    <img src="{{profile.profilePic.content.url}}" class="img-12">
+                {% endif %}           
+                <div class="div-14">
+                    <span class="span-13">Handle: @{{profile.user}}</span>
+                    <strong>Name: {{profile.user.first_name}} {{profile.user.last_name}}</strong>
+                    <span class="span-13">{{profile.bio}}</span>
+                </div>
+                <form action="/show-messages/{{profile.user.id}}" method="GET">
+                    {% if request.user != profile.user %}
+                        <input type="submit" value="Send a message" style="font-weight: bold; padding: 0.7ch">
+                    {% endif %}
+                </form>
+            </div>
+
+
+            <div class="feed">
+                <span class="span-12">Posts by this user</span>                
+                {% for post in profile.posts.all %}
+                <div class="div-11">
+                    <div class="div-12">
+                        {% if post.created_by.profilePic.content is None %}
+                            <img src="{% static 'profile_pic_unavailable.jpg' %}" class="img-11">
+                        {% else %}
+                            <img src="{{post.created_by.profilePic.content.url}}" class="img-11">
+                        {% endif %}
+                        <a href="/show-profile/{{post.created_by.user.id}}">
+                            <span class="span-13">{{post.created_by.user.first_name}} {{post.created_by.user.last_name}}</span>
+                        </a>
+                        <span class="span-13">{{post.upload_time|timezone:"Asia/Kolkata"}}</span>
+                    </div>
+                    <span class="span-11">{{post.caption}}</span>
+                    <img src="{{post.photo.content.url}}" class="img-12">
+                </div>
+                {% endfor %}
+            </div>
+
+
+
+            <div class="feed-right">
+                <span class="span-12">Followers</span>
+                {% for follower in profile.followers.all %}
+                    <div class="div-14">
+                        <div class="div-15">
+                            {% if follower.profile.profilePic.content is None %}
+                                <img src="{% static 'profile_pic_unavailable.jpg' %}" class="img-11">
+                            {% else %}
+                                <img src="{{follower.profile.profilePic.content.url}}" class="img-11">
+                            {% endif %} 
+                            <span class="span-13">{{follower.profile.user.first_name}} {{follower.profile.user.last_name}}</span>
+                            <a href="/show-profile/{{follower.profile.user.id}}">
+                                <span class="span-13">@{{follower.profile.user.username}}</span>
+                            </a>                            
+                        </div>                        
+                        {% if follower.profile == request.user.profile %}
+                            <strong>YOU</strong>
+                        {% elif follower.profile in following %}
+                            <form action="/unfollow/{{follower.profile.user.id}}/" method="POST">
+                                {% csrf_token %}
+                                <input class="button-11" type="submit" value="Unfollow">
+                            </form>
+                        {% else %}
+                            <form action="/follow/{{follower.profile.user.id}}/" method="POST">
+                                {% csrf_token %}
+                                <input class="button-11" type="submit" value="Follow">
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

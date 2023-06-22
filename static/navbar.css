@@ -1,0 +1,124 @@
+.large-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* width: 98vw; */
+    top: 0.5vh;
+    left: 0.2vw;
+    right: 0.2vw;
+    bottom: 92vh;
+    background-color: black;
+    padding: 1ch;
+    border-radius: 0.4ch;
+}
+
+.logo {
+    font-weight: bold;
+    color: white;
+}
+
+.large-navbar .left-region {
+    display: flex;
+    column-gap: 1vw;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+}
+
+.large-navbar .middle-region {
+    display: flex;
+    align-items: center;
+    column-gap: 1vw;
+    height: 100%;
+}
+
+.large-navbar .right-region {
+    display: flex;
+    align-items: center;
+    column-gap: 1vw;
+    height: 100%;
+}
+
+.large-navbar .search-bar {
+    height: 100%;
+    border: none;
+    border-radius: 2%;
+    padding: 0.5ch;
+    font-weight: bold;
+}
+
+.navbar-button-11 {
+    background-color: white;
+    font-weight: bold;
+    color: black;
+    height: 4ch;
+    /* width: 100%; */
+    border: none;
+    cursor: pointer;
+    border-radius: 0.4ch;
+    font-size: 1.5ch;
+    transition: font-size 0.1s;
+}
+
+.navbar-button-11:active {
+    box-shadow: 0.1ch 0.1ch 0.5ch 0.3ch rgb(187, 184, 184) inset;
+    font-size: 1.2ch;
+}
+
+.navbar-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-bottom {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: space-between;
+    transition: bottom 0.6s;
+    background-color: blue;
+}
+
+.settings-icon {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.small-navbar .navbar-top{
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1ch;
+    border-radius: 0.5ch;
+    position: fixed;
+    top: 0.5vh;
+    bottom: 92vh;
+    left: 0.3vw;
+    right: 0.3vw;
+}
+
+
+
+
+
+@media screen and (max-width: 750px){
+    .large-navbar {
+        visibility: hidden;
+        height: 0px;
+        overflow: hidden;
+    }    
+}
+
+@media screen and (min-width: 751px){
+    .small-navbar {
+        visibility: hidden;
+        height: 0px;
+        overflow: hidden;
+    }
+}
+

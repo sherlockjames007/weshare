@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+{% load tz %}
+<html>
+    <head>
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'class_styles.css' %}">
+        <link rel="stylesheet" href="{% static 'general_styles.css' %}">
+        <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <div class="content">
+            <div class="feed">
+                <span class="span-12">SETTINGS</span>
+                <form method="POST" action="/settings/" class="div-14">
+                    {% csrf_token %}
+                    <strong>Edit name</strong>
+                    <input type="text" placeholder="First name" required name="first_name" style="height: 7vh; word-break: break-all;">
+                    <input type="text" placeholder="Last name" required name="last_name" style="height: 7vh; word-break: break-all;">
+                    <input type="submit" value="Edit" class="button-11">
+                </form>
+                <form method="POST" action="/settings/" enctype="multipart/form-data" class="div-14">
+                    {% csrf_token %}
+                    <strong>Edit profile picture</strong>
+                    <input type="file" required name="photo" accept="image/*">
+                    <input type="submit" value="Edit" class="button-11">
+                </form>
+                <form method="POST" action="/settings/" class="div-14">
+                    {% csrf_token %}
+                    <strong>Edit bio</strong>
+                    <input type="text" placeholder="Bio" required name="bio" style="height: 7vh; word-break: break-all;">
+                    <input type="submit" value="Edit" class="button-11">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

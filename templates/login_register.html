@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Login / Register</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'login_register_styles.css' %}">
+    </head>
+    <body>
+        <div class="content">
+            {% if page == 'login' %}
+                <div class="div-1">
+                    <form method="POST" action="/login/" class="div-3">
+                        {% csrf_token %}
+                        <input class="input-1" type="text" placeholder="username" required name="username">
+                        <input class="input-1" type="password" placeholder="Password" required name="password">
+                        <input type="submit" value="Login" class="button-1">
+                    </form>                    
+                    <div class="div-2">
+                        <span>Don't have an account?</span>
+                        <a href="/register/">
+                            Sign up
+                        </a>
+                    </div>                    
+                </div>
+            {% else %}
+                <div class="div-1">
+                    <form method="POST" action="/register/" class="div-3">
+                        {% csrf_token %}
+                        <input class="input-1" type="text" placeholder="First name" required name="first_name" id="first_name">
+                        <input class="input-1" type="text" placeholder="Last name" required name="last_name" id="last_name">
+                        <input class="input-1" type="text" placeholder="username" required name="username">
+                        <input class="input-1" type="password" placeholder="Password" required name="password">
+                        <input type="submit" value="Register" class="button-1">
+                    </form>
+                    
+                    <div class="div-2">
+                        <span>Already have an account? </span>
+                        <a href="/login/">
+                            Log in
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </body>
+</html>
